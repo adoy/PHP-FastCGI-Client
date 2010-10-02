@@ -89,8 +89,8 @@ class FCGIClient
     }
 
     /**
-     * Define wether or not the FastCGI application should keep the connection
-     * alive the end of a request
+     * Define whether or not the FastCGI application should keep the connection
+     * alive at the end of a request
      *
      * @param Boolean $b true if the connection should stay alive, false otherwise
      */
