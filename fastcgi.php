@@ -18,7 +18,7 @@
  * Handles communication with a FastCGI application
  *
  * @author      Pierrick Charron <pierrick@webstart.fr> 
- * @version     1.0 alpha
+ * @version     1.0
  */
 class FCGIClient
 {
