@@ -241,10 +241,16 @@ class FCGIClient
     {
         if ($packet = fread($this->_sock, self::HEADER_LEN)) {
             $resp = $this->decodePacketHeader($packet);
-            if ($len = $resp['contentLength'] + $resp['paddingLength']) {
-                $resp['content'] = substr(fread($this->_sock, $len), 0, $resp['contentLength']);
-            } else {
-                $resp['content'] = '';
+            $resp['content'] = '';
+            if ($resp['contentLength']) {
+                $len  = $resp['contentLength'];
+                while ($len && $buf=fread($this->_sock, $len)) {
+                    $len -= strlen($buf);
+                    $resp['content'] .= $buf;
+                }
+            }
+            if ($resp['paddingLength']) {
+                $buf=fread($this->_sock, $resp['paddingLength']);
             }
             return $resp;
         } else {
