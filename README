@@ -45,7 +45,7 @@ How can I use it ?
 
 require 'vendor/autoload.php';
 
-use FastCGI\Client;
+use Adoy\FastCGI\Client;
 
 $client = new Client('localhost', '9000');
 $content = 'key=value';

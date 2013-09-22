@@ -14,7 +14,7 @@
  * See the GNU Lesser General Public License for more details.
  */
 
-namespace FastCGI;
+namespace Adoy\FastCGI;
 
 /**
  * Handles communication with a FastCGI application

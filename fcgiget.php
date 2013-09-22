@@ -17,7 +17,7 @@
 
 require 'vendor/autoload.php';
 
-use FastCGI\Client;
+use Adoy\FastCGI\Client;
 
 /**
  * Simple command line script to test communication with a FastCGI server
