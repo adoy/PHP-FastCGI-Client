@@ -15,6 +15,8 @@
  * See the GNU Lesser General Public License for more details.
  */
 
+require 'vendor/autoload.php';
+
 use FastCGI\Client;
 
 /**
@@ -24,8 +26,6 @@ use FastCGI\Client;
  * @author      Remi Collet <remi@famillecollet.com>
  * @version     1.0
  */
-require('fastcgi.php');
-
 if (!isset($_SERVER['argc'])) {
     die("Command line only\n");
 }

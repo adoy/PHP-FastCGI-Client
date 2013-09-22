@@ -43,9 +43,9 @@ See the GNU Lesser General Public License for more details.
 How can I use it ?
 ==================
 
-use FastCGI\Client;
+require 'vendor/autoload.php';
 
-require('fastcgi.php');
+use FastCGI\Client;
 
 $client = new Client('localhost', '9000');
 $content = 'key=value';
