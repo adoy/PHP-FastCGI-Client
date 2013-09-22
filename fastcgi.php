@@ -14,13 +14,15 @@
  * See the GNU Lesser General Public License for more details.
  */
 
+namespace FastCGI;
+
 /**
  * Handles communication with a FastCGI application
  *
- * @author      Pierrick Charron <pierrick@webstart.fr> 
+ * @author      Pierrick Charron <pierrick@webstart.fr>
  * @version     1.0
  */
-class FCGIClient
+class Client
 {
     const VERSION_1            = 1;
 
@@ -120,7 +122,7 @@ class FCGIClient
         if (!$this->_sock) {
             $this->_sock = fsockopen($this->_host, $this->_port, $errno, $errstr, 5);
             if (!$this->_sock) {
-                throw new Exception('Unable to connect to FastCGI application');
+                throw new \Exception('Unable to connect to FastCGI application');
             }
         }
     }
@@ -278,7 +280,7 @@ class FCGIClient
         if ($resp['type'] == self::GET_VALUES_RESULT) {
             return $this->readNvpair($resp['content'], $resp['length']);
         } else {
-            throw new Exception('Unexpected response type, expecting GET_VALUES_RESULT');
+            throw new \Exception('Unexpected response type, expecting GET_VALUES_RESULT');
         }
     }
 
@@ -320,18 +322,18 @@ class FCGIClient
         } while ($resp && $resp['type'] != self::END_REQUEST);
 
         if (!is_array($resp)) {
-            throw new Exception('Bad request');
+            throw new \Exception('Bad request');
         }
 
         switch (ord($resp['content']{4})) {
             case self::CANT_MPX_CONN:
-                throw new Exception('This app can\'t multiplex [CANT_MPX_CONN]');
+                throw new \Exception('This app can\'t multiplex [CANT_MPX_CONN]');
                 break;
             case self::OVERLOADED:
-                throw new Exception('New request rejected; too busy [OVERLOADED]');
+                throw new \Exception('New request rejected; too busy [OVERLOADED]');
                 break;
             case self::UNKNOWN_ROLE:
-                throw new Exception('Role value not known [UNKNOWN_ROLE]');
+                throw new \Exception('Role value not known [UNKNOWN_ROLE]');
                 break;
             case self::REQUEST_COMPLETE:
                 return $response;

@@ -15,6 +15,8 @@
  * See the GNU Lesser General Public License for more details.
  */
 
+use FastCGI\Client;
+
 /**
  * Simple command line script to test communication with a FastCGI server
  *
@@ -43,11 +45,11 @@ if (isset($url['query'])) {
     $url['query'] = '';
     $uri = $req;
 }
-$client = new FCGIClient(
-    (isset($url['host']) ? $url['host'] : 'localhost'), 
+$client = new Client(
+    (isset($url['host']) ? $url['host'] : 'localhost'),
     (isset($url['port']) ? $url['port'] : 9000));
 
-$params = array(       
+$params = array(
 		'GATEWAY_INTERFACE' => 'FastCGI/1.0',
 		'REQUEST_METHOD'    => 'GET',
 		'SCRIPT_FILENAME'   => $url['path'],
