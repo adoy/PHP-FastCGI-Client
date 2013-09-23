@@ -15,7 +15,7 @@
  * See the GNU Lesser General Public License for more details.
  */
 
-require 'vendor/autoload.php';
+require 'src/Adoy/FastCGI/Client.php';
 
 use Adoy\FastCGI\Client;
 
