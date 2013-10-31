@@ -8,7 +8,7 @@ AUTHOR & CONTACT
 ================
 
 Charron Pierrick
-    - pierrick@webstart.fr
+    - pierrick@adoy.net
 
 
 DOCUMENTATION & DOWNLOAD
@@ -24,21 +24,10 @@ Documentation can be found on :
 LICENSE
 =======
 
-This Code is released under the GNU LGPL
+This Code is released under the MIT license.
 
-Please do not change the header of the file(s).
-
-This library is free software; you can redistribute it and/or modify it
-under the terms of the GNU Lesser General Public License as published
-by the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-or FITNESS FOR A PARTICULAR PURPOSE.
-
-See the GNU Lesser General Public License for more details.
-
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
 
 How can I use it ?
 ==================

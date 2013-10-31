@@ -2,11 +2,11 @@
     "name": "adoy/fastcgi-client",
     "description": "Client for communication with a FastCGI (FCGI) application using the FastCGI protocol.",
     "keywords": ["fastcgi"],
-    "license": "LGPL-2.1",
+    "license": "MIT",
     "authors": [
         {
             "name": "Pierrick Charron",
-            "email": "pierrick@php.net"
+            "email": "pierrick@adoy.net"
         }
     ],
     "autoload": {

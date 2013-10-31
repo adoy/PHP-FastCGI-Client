@@ -1,25 +1,18 @@
 <?php
-/**
- * Note : Code is released under the GNU LGPL
+/*
+ * This file is part of PHP-FastCGI-Client.
  *
- * Please do not change the header of this file
+ * (c) Pierrick Charron <pierrick@adoy.net>
  *
- * This library is free software; you can redistribute it and/or modify it under the terms of the GNU
- * Lesser General Public License as published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * See the GNU Lesser General Public License for more details.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
-
 namespace Adoy\FastCGI;
 
 /**
  * Handles communication with a FastCGI application
  *
- * @author      Pierrick Charron <pierrick@webstart.fr>
+ * @author      Pierrick Charron <pierrick@adoy.net>
  * @version     1.0
  */
 class Client
