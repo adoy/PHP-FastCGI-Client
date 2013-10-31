@@ -1,8 +1,8 @@
                        _________________________
-  
+
                        PHP FastCGI Client README
                        _________________________
-                         
+
 
 AUTHOR & CONTACT
 ================
@@ -10,14 +10,14 @@ AUTHOR & CONTACT
 Charron Pierrick
     - pierrick@webstart.fr
 
-    
+
 DOCUMENTATION & DOWNLOAD
 ========================
 
 Latest version is available on github at :
     - http://github.com/adoy/PHP-FastCGI-Client/
 
-Documentation can be found on : 
+Documentation can be found on :
     - http://github.com/adoy/PHP-FastCGI-Client/
 
 
@@ -28,13 +28,13 @@ This Code is released under the GNU LGPL
 
 Please do not change the header of the file(s).
 
-This library is free software; you can redistribute it and/or modify it 
-under the terms of the GNU Lesser General Public License as published 
-by the Free Software Foundation; either version 2 of the License, or 
+This library is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 
-This library is distributed in the hope that it will be useful, but 
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+This library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU Lesser General Public License for more details.
@@ -43,12 +43,14 @@ See the GNU Lesser General Public License for more details.
 How can I use it ?
 ==================
 
-require('fastcgi.php');
+require 'vendor/autoload.php';
 
-$client = new FCGIClient('localhost', '9000');
+use Adoy\FastCGI\Client;
+
+$client = new Client('localhost', '9000');
 $content = 'key=value';
 echo $client->request(
-	array(       
+	array(
 		'GATEWAY_INTERFACE' => 'FastCGI/1.0',
 		'REQUEST_METHOD' => 'POST',
 		'SCRIPT_FILENAME' => 'test.php',

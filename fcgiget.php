@@ -15,6 +15,10 @@
  * See the GNU Lesser General Public License for more details.
  */
 
+require 'src/Adoy/FastCGI/Client.php';
+
+use Adoy\FastCGI\Client;
+
 /**
  * Simple command line script to test communication with a FastCGI server
  *
@@ -22,8 +26,6 @@
  * @author      Remi Collet <remi@famillecollet.com>
  * @version     1.0
  */
-require('fastcgi.php');
-
 if (!isset($_SERVER['argc'])) {
     die("Command line only\n");
 }
@@ -43,11 +45,11 @@ if (isset($url['query'])) {
     $url['query'] = '';
     $uri = $req;
 }
-$client = new FCGIClient(
-    (isset($url['host']) ? $url['host'] : 'localhost'), 
+$client = new Client(
+    (isset($url['host']) ? $url['host'] : 'localhost'),
     (isset($url['port']) ? $url['port'] : 9000));
 
-$params = array(       
+$params = array(
 		'GATEWAY_INTERFACE' => 'FastCGI/1.0',
 		'REQUEST_METHOD'    => 'GET',
 		'SCRIPT_FILENAME'   => $url['path'],
