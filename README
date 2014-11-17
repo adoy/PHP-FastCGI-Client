@@ -36,6 +36,9 @@ require 'vendor/autoload.php';
 
 use Adoy\FastCGI\Client;
 
+// Existing socket, such as Lighttpd with mod_fastcgi:
+$client = new Client('unix:///path/to/php/socket', -1);
+// Fastcgi server, such as PHP-FPM:
 $client = new Client('localhost', '9000');
 $content = 'key=value';
 echo $client->request(
