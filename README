@@ -32,7 +32,6 @@ file that was distributed with this source code.
 How can I use it ?
 ==================
 
-```php
 require 'vendor/autoload.php';
 
 use Adoy\FastCGI\Client;
@@ -59,4 +58,4 @@ echo $client->request(
 	),
 	$content
 );
-```
+
