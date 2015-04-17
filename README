@@ -59,3 +59,15 @@ echo $client->request(
 	$content
 );
 
+Command line tool
+=================
+
+Run a call through a network socket:
+
+    ./fcgiget.php localhost:9000/status
+
+Run a call through a Unix Domain Socket
+
+    ./fcgiget.php unix:/var/run/php-fpm/web.sock/status
+
+This command line tool is provided for debuging purpose.

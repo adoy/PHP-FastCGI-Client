@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
  * This file is part of PHP-FastCGI-Client.
@@ -24,10 +24,24 @@ if (!isset($_SERVER['argc'])) {
     die("Command line only\n");
 }
 if ($_SERVER['argc']<2) {
-    die("Usage: ".$_SERVER['argv'][0]."  URI\n\nEx: ".$_SERVER['argv'][0]." localhost:9000/status\n");
+    echo "Usage: ".$_SERVER['argv'][0]."  URI\n\n";
+    echo "Ex: ".$_SERVER['argv'][0]." localhost:9000/status\n";
+    echo "Ex: ".$_SERVER['argv'][0]." unix:/var/run/php-fpm/web.sock/status\n";
+    exit(1);
 }
 
-$url = parse_url($_SERVER['argv'][1]);
+if (preg_match('|^unix:(.*.sock)(/.*)$|', $_SERVER['argv'][1], $reg)) {
+    $url  = parse_url($reg[2]);
+    $sock = $reg[1];
+    if (!file_exists($sock)) {
+        die("UDS $sock not found\n");
+    } else if (!is_writable($sock)) {
+        die("UDS $sock is not writable\n");
+    }
+} else {
+    $url  = parse_url($_SERVER['argv'][1]);
+    $sock = false;
+}
 if (!$url || !isset($url['path'])) {
     die("Malformed URI");
 }
@@ -39,9 +53,15 @@ if (isset($url['query'])) {
     $url['query'] = '';
     $uri = $req;
 }
-$client = new Client(
-    (isset($url['host']) ? $url['host'] : 'localhost'),
-    (isset($url['port']) ? $url['port'] : 9000));
+if ($sock) {
+    $client = new Client("unix://$sock", -1);
+    echo "Call: $uri on UDS $sock\n\n";
+} else {
+    $host = (isset($url['host']) ? $url['host'] : 'localhost');
+    $port = (isset($url['port']) ? $url['port'] : 9000);
+    $client = new Client($host, $port);
+    echo "Call: $uri on $host:$port\n\n";
+}
 
 $params = array(
 		'GATEWAY_INTERFACE' => 'FastCGI/1.0',
@@ -62,6 +82,5 @@ $params = array(
 		'CONTENT_LENGTH'    => 0
 );
 //print_r($params);
-echo "Call: $uri\n\n";
 echo $client->request($params, false)."\n";
 
