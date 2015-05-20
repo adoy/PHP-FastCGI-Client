@@ -31,7 +31,7 @@ class ForbiddenException extends \Exception {}
  * Handles communication with a FastCGI application
  *
  * @author      Pierrick Charron <pierrick@adoy.net>
- * @version     1.0
+ * @version     1.0.0
  */
 class Client
 {
