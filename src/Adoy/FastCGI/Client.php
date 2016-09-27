@@ -384,7 +384,7 @@ class Client
             $resp['content'] = '';
             if ($resp['contentLength']) {
                 $len  = $resp['contentLength'];
-                while ($len && $buf=fread($this->_sock, $len)) {
+                while ($len && ($buf=fread($this->_sock, $len)) !== false) {
                     $len -= strlen($buf);
                     $resp['content'] .= $buf;
                 }
