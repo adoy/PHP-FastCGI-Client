@@ -70,6 +70,8 @@ class Client
     const REQ_STATE_ERR        = 3;
     const REQ_STATE_TIMED_OUT  = 4;
 
+    const FCGI_MAX_LENGTH  = 0xffff;
+
     /**
      * Socket
      * @var Resource
@@ -475,6 +477,11 @@ class Client
         $request .= $this->buildPacket(self::PARAMS, '', $id);
 
         if ($stdin) {
+            while (strlen($stdin) > self::FCGI_MAX_LENGTH) {
+                $chunkStdin = substr($stdin, 0, self::FCGI_MAX_LENGTH);
+                $request .= $this->buildPacket(self::STDIN, $chunkStdin, $id);
+                $stdin = substr($stdin, self::FCGI_MAX_LENGTH);
+            }
             $request .= $this->buildPacket(self::STDIN, $stdin, $id);
         }
         $request .= $this->buildPacket(self::STDIN, '', $id);
